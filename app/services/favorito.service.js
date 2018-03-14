@@ -15,7 +15,7 @@ require("rxjs/add/operator/map");
 var FavoritoService = /** @class */ (function () {
     function FavoritoService(_http) {
         this._http = _http;
-        this.url = 'http//localhost:3678/api/';
+        this.url = 'http://localhost:3678/api/';
     }
     FavoritoService.prototype.getFavoritos = function () {
         return this._http.get(this.url + 'favoritos').map(function (res) { return res.json(); });

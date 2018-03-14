@@ -13,11 +13,18 @@ var core_1 = require("@angular/core");
 var favorito_service_1 = require("../services/favorito.service");
 var FavoritosListComponent = /** @class */ (function () {
     function FavoritosListComponent(_favoritoService) {
-        var _this = this;
         this._favoritoService = _favoritoService;
         this.title = 'Listado de marcadores';
+    }
+    FavoritosListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.log('FavoritosListComponent cargado!');
         this._favoritoService.getFavoritos().subscribe(function (result) {
             console.log(result);
+            _this.favoritos = result.favoritos;
+            if (!_this.favoritos) {
+                alert('Error en el servidor');
+            }
         }, function (error) {
             _this.errorMessage = error;
             if (_this.errorMessage != null) {
@@ -25,9 +32,6 @@ var FavoritosListComponent = /** @class */ (function () {
                 alert('Error en la petición');
             }
         });
-    }
-    FavoritosListComponent.prototype.ngOnInit = function () {
-        console.log('FavoritosListComponent cargado!');
     };
     FavoritosListComponent = __decorate([
         core_1.Component({
